@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "Pivr3bRu5p8YfF68qfVfu49tnzWCo+Hdyzt4BIOEpRVIqZ4tc6yYJrYOe2zG6vPBUW2tIjPNFi7yFQQEucAqkA==",
+  "success": true,
+  "projectFilePath": "C:\\Git\\ASP.NET Core\\aspnet202208\\20220920\\WA50\\Northwind.Store.Model\\Northwind.Store.Model.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://ddcnexus.ddcinternal.com/repository/nuget-rtg-platform-releases'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://ngpnexus.realtimegaming.com/repository/nuget-rtg-snapshots'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    },
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://ngpnexus.realtimegaming.com/repository/nuget-rtg-releases'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}

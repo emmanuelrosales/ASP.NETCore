@@ -1,0 +1,147 @@
+﻿@model WA4.Models.HomeIndexViewModel
+@using WA4.Helpers.HTML
+
+@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+		<div class="col-4">
+			<a class="btn btn-outline-primary"
+			   ajax="true" ajax-url="/Home/IndexPartial/1" ajax-target="#demo" ajax-mode="after">
+				Get Detail
+			</a>
+		</div>
+		<div class="col-8">
+			<form class="form-inline" ajax="true" ajax-method="post" 
+				  ajax-url="/Home/IndexViewComponent" ajax-target="#demo" 
+				  ajax-failure="productAjaxFailure">
+				<div class="form-group">
+					<label>Product ID</label>
+					<input type="text" class="form-control" name="id" placeholder="Type product ID">
+				</div>
+				<button type="submit" class="btn btn-primary">Get Detail</button>
+			</form>
+			<script>
+				function productAjaxFailure(xhr) {
+					if (xhr.status === 404) {
+						alert('Product not found!');
+					}
+				}
+			</script>
+		</div>
+	</div>
+	<table class="table table-bordered table-striped">
+		<tbody id="demo"></tbody>
+	</table>
+
+	@section scripts {
+		<environment names="Development">
+			<script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
+		</environment>
+		<environment names="Production">
+			<script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+		</environment>
+	}
+
+<form asp-action="Index">
+	<div class="mb-3">
+		<input asp-for="Filter" class="form-control" placeholder="Search filter ...">
+	</div>
+	<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model.Groups != null && Model.Groups.Count > 0)
+{
+     <div class="row">
+        <div class="col-12">
+            <h2>Products</h2>
+            @foreach (var p in Model.Groups)
+            {
+                <section class="section">
+                    <h3>@p.CategoryName</h3>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => p.Products[0].ProductName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => p.Products[0].QuantityPerUnit)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => p.Products[0].UnitPrice)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => p.Products[0].UnitsInStock)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var g in p.Products)
+                            {
+                                //<partial name="ProductPartial" model="g" />
+                                //await Html.RenderPartialAsync("ProductPartial", g);
+                                @await Html.PartialAsync("ProductPartial", g)
+                            }
+                        </tbody>
+@*                        	<tbody>
+                            @foreach (var g in p.Products)
+                            {
+                                @await Component.InvokeAsync("Product", new { id = g.ProductId })
+                            }
+                            </tbody>*@
+@*                        <tbody>
+                            @foreach (var g in p.Products)
+                            {
+                                <tr product="g"></tr>
+                            }
+                        </tbody>*@
+@*                        <tbody>
+                            @foreach (var g in p.Products)
+                            {
+                                <product data="g" />
+                            }
+                        </tbody>*@
+@*                        <tbody>
+                            @foreach (var g in p.Products)
+                            {
+                                @Html.ProductDetail(g)
+                            }
+                        </tbody>*@
+@*                        <tbody>
+                            @foreach (var g in p.Products)
+                            {
+                                //@ProductHelper.ProductDetail(g)
+                                @ProductHelper.ProductDetail2(g)
+                            }
+                        </tbody>*@
+@*                        <tbody>
+                            @foreach (var item in p.Products)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem =>item.ProductName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UnitPrice)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UnitsInStock)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>*@
+                    </table>
+                </section>
+            }
+        </div>
+     </div>
+}
+else
+{
+	<p>No data</p>
+}

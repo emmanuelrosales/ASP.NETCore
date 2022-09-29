@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\OneDrive - Information Technology Support, Limitada\Desktop\WA50\Northwind.Store.Data\Northwind.Store.Data.csproj" />
+    <ProjectReference Include="..\..\..\..\..\OneDrive - Information Technology Support, Limitada\Desktop\WA50\Northwind.Store.Model\Northwind.Store.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\HTML\" />
+    <Folder Include="Helpers\TAG\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Home\Components\Product\" />
+  </ItemGroup>
+
+</Project>
